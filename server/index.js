@@ -9,6 +9,9 @@ app.get('/',(req, res)=> {
 app.get('/api/rtimu/', async(req, res)=> {
   //随机获取10个题目；
   // console.log(req)
+  //跨域请求
+  res.append("Access-Control-Allow-Origin", "*");
+  res.append("Access-Control-Allow-Content-Type", "*");
   let page = req.query.page ? req.query.page : 2
   let strSql = `select * from quizzes limit ${page*10},10`;
   let result = await sqlQuery(strSql)
